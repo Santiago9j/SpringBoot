@@ -27,10 +27,8 @@ import jakarta.validation.constraints.Size;
 
 
  //Principal
+// A los nosEmpty, agregamos un message personalizado, igual para el size y email.
 
- //Tener en cuenta el archivo Importante de esta rama.
- //Luego de añadir la dependencia, indicamos en cada uno de los atributos si puedo o no estar vacio, el tamaño y algunos formatos como el email
- //Ir a el Controller
 @Entity
 @Table(name="clientes")  
 public class Cliente implements Serializable{
@@ -39,16 +37,16 @@ public class Cliente implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
-    @NotEmpty
-    @Size(min = 4, max = 12)
+    @NotEmpty(message = "no puede estar vacio")
+    @Size(min = 4, max = 12, message = "el tamaño tiene que estar entre 4 y 12")
     @Column(nullable = false)
     private String nombre;
 
-    @NotEmpty
+    @NotEmpty(message = "no puede estar vacio")
     private String apellido;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "no puede estar vacio")
+    @Email(message = "debe ser un correo electronico")
     @Column(nullable = false, unique = true)
     private String email;
  
